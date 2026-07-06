@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>栞映日本映画馆_日本电影日剧动漫电影综艺纪录片高清片库推荐</title>
+    <meta name="keywords" content="日本电影,日本电影网,日本电影推荐,日本电影片库,日本影视,日本日剧,日剧在线观看,日本动漫电影,日本综艺,日本纪录片,高清电影资源,高分日本电影,电影网站,日本电影大全" />
+    <meta name="description" content="栞映日本映画馆整理日本电影、日剧、动漫电影、综艺、纪录片等高清内容资料，提供80+片库索引、30+首页精选、类型筛选、评分榜单、详情介绍和观影推荐。" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="home">
+    <header class="topbar">
+      <a class="logo" href="./index.html"><b>栞映日本映画馆</b><span>SHIORI EIGA INDEX</span></a>
+      <nav class="nav" aria-label="主导航">
+        <a class="active" href="./index.html">今日片单</a>
+        <a href="./library.html">全片库</a>
+        <a href="./library.html?kind=电影">院线电影</a>
+        <a href="./library.html?kind=日剧">日剧连载</a>
+        <a href="./library.html?kind=动漫电影">动画长片</a>
+        <a href="./library.html?kind=综艺纪录">综艺纪实</a>
+      </nav>
+      <a class="top-action" href="./library.html?sort=score">高分索引</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="kicker">Japanese screen guide</p>
+          <h1>像翻开一本电影手账，查找日本银幕与剧集的好内容</h1>
+          <p>从是枝裕和到新海诚，从深夜食堂到旅行纪实，按题材、年代、热度和评分快速发现日本电影、日剧、动漫电影、综艺与纪录片。</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="./library.html">进入完整片库</a>
+            <a class="btn quiet" href="#daily">浏览今日精选</a>
+          </div>
+        </div>
+        <div class="hero-feature" id="heroFeature"></div>
+        <aside class="hero-board">
+          <p class="kicker">放映清单</p>
+          <div id="heroQueue"></div>
+        </aside>
+      </section>
+
+      <section class="channel-band" aria-label="频道入口">
+        <a href="./library.html?kind=电影"><span>01</span><b>日本电影</b><small>剧情、悬疑、爱情、家庭</small></a>
+        <a href="./library.html?kind=日剧"><span>02</span><b>日剧连载</b><small>都市、深夜、美食、犯罪</small></a>
+        <a href="./library.html?kind=动漫电影"><span>03</span><b>动画长片</b><small>青春、奇幻、冒险、治愈</small></a>
+        <a href="./library.html?kind=综艺纪录"><span>04</span><b>综艺纪实</b><small>旅行、人物、料理、文化</small></a>
+      </section>
+
+      <section class="section split">
+        <div>
+          <div class="section-title">
+            <p class="kicker">Editor focus</p>
+            <h2>本周适合慢慢看的电影与剧集</h2>
+          </div>
+          <div class="feature-list" id="spotlight"></div>
+        </div>
+        <aside class="rank-panel">
+          <p class="kicker">Top notes</p>
+          <h2>高分口碑榜</h2>
+          <ol id="rankList"></ol>
+        </aside>
+      </section>
+
+      <section class="section" id="daily">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Daily selection</p>
+            <h2>首页精选 36 部</h2>
+          </div>
+          <a href="./library.html">查看 88+ 片库</a>
+        </div>
+        <div class="poster-grid" id="homeGrid"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-brand">
+        <b>栞映日本映画馆</b>
+        <p>面向日本影视爱好者的内容索引，覆盖日本电影、日剧、动漫电影、综艺与纪录片资料。</p>
+      </div>
+      <div>
+        <h3>频道</h3>
+        <a href="./library.html?kind=电影">日本电影</a>
+        <a href="./library.html?kind=日剧">日剧连载</a>
+        <a href="./library.html?kind=动漫电影">动画长片</a>
+      </div>
+      <div>
+        <h3>索引</h3>
+        <a href="./library.html?genre=悬疑">悬疑推理</a>
+        <a href="./library.html?genre=美食">美食生活</a>
+        <a href="./library.html?sort=score">高分榜单</a>
+      </div>
+      <div>
+        <h3>版权</h3>
+        <p>Copyright © 2026 栞映日本映画馆. All Rights Reserved.</p>
+        <p>本站内容用于影视资料整理、片单推荐与观影信息展示。</p>
+      </div>
+    </footer>
+    <script src="./app.js"></script>
+  </body>
+</html>
