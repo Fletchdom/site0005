@@ -1,5 +1,38 @@
 const params = new URLSearchParams(location.search);
 const page = document.body.dataset.page;
+const fallbackTdk = {
+  title: "在线观看日本电影 - 高清日本电影免费在线观看",
+  keywords: "在线观看日本电影,日本电影免费观看,高清日本电影,日本电影在线,日本电影推荐,日本电影大全,日本电影网站",
+  description: "免费在线观看高清日本电影，提供最新日本电影、经典日本电影、日本动画电影在线观看，每日更新日本电影资源，支持手机电脑在线播放。"
+};
+
+function applyTdk(entry = fallbackTdk) {
+  document.title = entry.title;
+  document.querySelector("meta[name='keywords']")?.setAttribute("content", entry.keywords);
+  document.querySelector("meta[name='description']")?.setAttribute("content", entry.description);
+}
+
+function parseTdkLine(line) {
+  const parts = line.split("----").map((part) => part.trim());
+  if (parts.length < 3 || parts[0] === "标题") return null;
+  return { title: parts[0], keywords: parts[1], description: parts.slice(2).join("----") };
+}
+
+async function applyTdkFromFile() {
+  try {
+    const text = await fetch("./tdk.txt", { cache: "no-store" }).then((response) => {
+      if (!response.ok) throw new Error("tdk not found");
+      return response.text();
+    });
+    const entries = text.split(/\r?\n/).map(parseTdkLine).filter(Boolean);
+    const selected = entries.find((entry) => entry.title.includes("在线观看日本电影") && entry.keywords.includes("日本电影网站"))
+      || entries.find((entry) => entry.keywords.includes("日本电影在线"))
+      || entries[0];
+    applyTdk(selected || fallbackTdk);
+  } catch {
+    applyTdk(fallbackTdk);
+  }
+}
 
 const posterSeeds = [
   "1528164344705-47542687000d", "1542051841857-5f90071e7989", "1503899036084-c55cdd92da26",
@@ -73,7 +106,7 @@ const items = [
       genre,
       poster: imageFor(index),
       hot: 9800 - index * 43,
-      summary: `${title}收录于栞映日本映画馆片库，聚焦${genre}题材与${kind}内容，整理高清海报、年代评分、剧情线索和相近作品，适合查找日本电影、日剧、动漫电影、综艺与纪录片观影信息。`
+    summary: `${title}收录于栞映日本映画馆片库，聚焦${genre}题材与${kind}内容，整理高清海报、年代评分、剧情线索和相近作品，适合日本电影网、日本电影在线、日本电影官网、日本电影网站和日本电影在线观看用户查找观影信息。`
     };
   })
 ];
@@ -95,7 +128,7 @@ function toItem(row) {
     genre,
     poster,
     hot: 13000 - Number(id.slice(-3)) * 39,
-    summary: `${title}是栞映日本映画馆整理的${kind}条目，包含${genre}题材、高清海报、年份评分、剧情简介与相关片单推荐，可用于日本电影、日剧、动漫电影、综艺纪录内容检索。`
+    summary: `${title}是栞映日本映画馆整理的${kind}条目，包含${genre}题材、高清海报、年份评分、剧情简介与相关片单推荐，可用于日本电影网、日本电影在线、日本电影官网、日本电影网站、日本电影在线观看内容检索。`
   };
 }
 
@@ -166,8 +199,7 @@ function renderLibrary() {
 
 function renderDetail() {
   const item = items.find((entry) => entry.id === params.get("id")) || items[0];
-  document.title = "日本影视 - 免费在线观看日剧日影资源，热门日本电影电视剧高清无广告畅享";
-  document.querySelector("meta[name='description']").setAttribute("content", "日本影视为您提供最新最全的日剧、日本电影在线免费观看服务，涵盖热门日本电视剧、经典日影、日本动漫电影等高清资源，无需下载即可流畅播放，每日更新海量日本影视作品，是日剧迷与日影爱好者的首选在线观影平台。");
+  applyTdk(fallbackTdk);
   document.getElementById("detailRoot").innerHTML = `
     <div class="detail-cover"><img src="${item.poster}" alt="${item.title}"></div>
     <div class="detail-copy">
@@ -189,3 +221,4 @@ function render() {
 }
 
 render();
+applyTdkFromFile();
