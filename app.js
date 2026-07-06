@@ -2,7 +2,7 @@ const params = new URLSearchParams(location.search);
 const page = document.body.dataset.page;
 
 const posterSeeds = [
-  "1493976040374-85c8e12f0c0e", "1542051841857-5f90071e7989", "1503899036084-c55cdd92da26",
+  "1528164344705-47542687000d", "1542051841857-5f90071e7989", "1503899036084-c55cdd92da26",
   "1513407030348-c983a97b98d8", "1526481280693-3bfa7568e0f3", "1536098561742-ca998e48cbcc",
   "1500530855697-b586d89ba3ee", "1528360983277-13d401cdc186", "1505069446780-4ef442b5207f",
   "1478436127897-769e1b3f0f36", "1480796927426-f609979314bd", "1500534314209-a25ddb2bd429",
@@ -11,12 +11,12 @@ const posterSeeds = [
 ];
 
 const featured = [
-  ["jp-001", "怪物", "Monster", "电影", 2023, 8.7, "剧情", "https://upload.wikimedia.org/wikipedia/en/0/04/Monster_%282023_film%29_poster.jpg"],
-  ["jp-002", "小偷家族", "Shoplifters", "电影", 2018, 8.7, "家庭", "https://upload.wikimedia.org/wikipedia/en/8/8a/Shoplifters_%28film%29.png"],
-  ["jp-003", "驾驶我的车", "Drive My Car", "电影", 2021, 8.4, "剧情", "https://upload.wikimedia.org/wikipedia/en/6/6f/Drive_My_Car_%282021%29.png"],
-  ["jp-004", "花束般的恋爱", "We Made a Beautiful Bouquet", "电影", 2021, 8.6, "爱情", "https://upload.wikimedia.org/wikipedia/en/4/4b/We_Made_a_Beautiful_Bouquet.jpg"],
-  ["jp-005", "告白", "Confessions", "电影", 2010, 8.5, "悬疑", "https://upload.wikimedia.org/wikipedia/en/8/8d/Kokuhaku_%282010_film%29_poster.jpg"],
-  ["jp-006", "海街日记", "Our Little Sister", "电影", 2015, 8.8, "家庭", "https://upload.wikimedia.org/wikipedia/en/3/3f/Our_Little_Sister_%28film%29.jpg"],
+  ["jp-001", "怪物", "Monster", "电影", 2023, 8.7, "剧情", imageFor(12)],
+  ["jp-002", "小偷家族", "Shoplifters", "电影", 2018, 8.7, "家庭", imageFor(13)],
+  ["jp-003", "驾驶我的车", "Drive My Car", "电影", 2021, 8.4, "剧情", imageFor(14)],
+  ["jp-004", "花束般的恋爱", "We Made a Beautiful Bouquet", "电影", 2021, 8.6, "爱情", imageFor(15)],
+  ["jp-005", "告白", "Confessions", "电影", 2010, 8.5, "悬疑", imageFor(0)],
+  ["jp-006", "海街日记", "Our Little Sister", "电影", 2015, 8.8, "家庭", imageFor(1)],
   ["jp-007", "横道世之介", "A Story of Yonosuke", "电影", 2013, 8.8, "青春", imageFor(2)],
   ["jp-008", "孤狼之血", "The Blood of Wolves", "电影", 2018, 7.8, "犯罪", imageFor(3)],
   ["jp-009", "你的名字。", "Your Name.", "动漫电影", 2016, 8.8, "爱情", "https://cdn.myanimelist.net/images/anime/5/87048l.jpg"],
@@ -25,15 +25,15 @@ const featured = [
   ["jp-012", "灌篮高手 THE FIRST SLAM DUNK", "The First Slam Dunk", "动漫电影", 2022, 8.9, "运动", "https://cdn.myanimelist.net/images/anime/1745/129284l.jpg"],
   ["jp-013", "铃芽之旅", "Suzume", "动漫电影", 2022, 8.3, "奇幻", "https://cdn.myanimelist.net/images/anime/1598/128450l.jpg"],
   ["jp-014", "蓝色巨星", "Blue Giant", "动漫电影", 2023, 8.4, "音乐", imageFor(4)],
-  ["jp-015", "深夜食堂", "Midnight Diner", "日剧", 2009, 8.9, "美食", "https://static.tvmaze.com/uploads/images/original_untouched/248/620533.jpg"],
-  ["jp-016", "弥留之国的爱丽丝", "Alice in Borderland", "日剧", 2020, 8.2, "悬疑", "https://static.tvmaze.com/uploads/images/original_untouched/589/1473249.jpg"],
-  ["jp-017", "First Love 初恋", "First Love", "日剧", 2022, 8.5, "爱情", "https://static.tvmaze.com/uploads/images/original_untouched/438/1096909.jpg"],
+  ["jp-015", "深夜食堂", "Midnight Diner", "日剧", 2009, 8.9, "美食", imageFor(15)],
+  ["jp-016", "弥留之国的爱丽丝", "Alice in Borderland", "日剧", 2020, 8.2, "悬疑", imageFor(12)],
+  ["jp-017", "First Love 初恋", "First Love", "日剧", 2022, 8.5, "爱情", imageFor(13)],
   ["jp-018", "舞伎家的料理人", "The Makanai", "日剧", 2023, 8.1, "生活", "https://static.tvmaze.com/uploads/images/original_untouched/441/1103633.jpg"],
   ["jp-019", "忍者之家", "House of Ninjas", "日剧", 2024, 7.8, "动作", "https://static.tvmaze.com/uploads/images/original_untouched/514/1286816.jpg"],
-  ["jp-020", "火烧御手洗家", "Burn the House Down", "日剧", 2023, 7.6, "悬疑", "https://static.tvmaze.com/uploads/images/original_untouched/470/1176681.jpg"],
+  ["jp-020", "火烧御手洗家", "Burn the House Down", "日剧", 2023, 7.6, "悬疑", imageFor(14)],
   ["jp-021", "孤独的美食家", "Solitary Gourmet", "日剧", 2012, 8.7, "美食", "https://static.tvmaze.com/uploads/images/original_untouched/491/1229441.jpg"],
   ["jp-022", "重启人生", "Brush Up Life", "日剧", 2023, 8.6, "喜剧", imageFor(5)],
-  ["jp-023", "双层公寓", "Terrace House", "综艺纪录", 2015, 8.0, "真人秀", "https://static.tvmaze.com/uploads/images/original_untouched/34/85871.jpg"],
+  ["jp-023", "双层公寓", "Terrace House", "综艺纪录", 2015, 8.0, "真人秀", imageFor(2)],
   ["jp-024", "主厨的餐桌：寿司", "Chef's Table Sushi", "综艺纪录", 2021, 8.1, "纪录片", "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=900&q=80"],
   ["jp-025", "不了神话 宫崎骏", "Never-Ending Man", "综艺纪录", 2016, 8.4, "人物", imageFor(6)],
   ["jp-026", "人生果实", "Life Is Fruity", "综艺纪录", 2017, 8.7, "纪录片", imageFor(7)],
@@ -166,8 +166,8 @@ function renderLibrary() {
 
 function renderDetail() {
   const item = items.find((entry) => entry.id === params.get("id")) || items[0];
-  document.title = `${item.title}_${item.kind}高清资料_日本影视详情_栞映日本映画馆`;
-  document.querySelector("meta[name='description']").setAttribute("content", item.summary);
+  document.title = "日本影视 - 免费在线观看日剧日影资源，热门日本电影电视剧高清无广告畅享";
+  document.querySelector("meta[name='description']").setAttribute("content", "日本影视为您提供最新最全的日剧、日本电影在线免费观看服务，涵盖热门日本电视剧、经典日影、日本动漫电影等高清资源，无需下载即可流畅播放，每日更新海量日本影视作品，是日剧迷与日影爱好者的首选在线观影平台。");
   document.getElementById("detailRoot").innerHTML = `
     <div class="detail-cover"><img src="${item.poster}" alt="${item.title}"></div>
     <div class="detail-copy">
